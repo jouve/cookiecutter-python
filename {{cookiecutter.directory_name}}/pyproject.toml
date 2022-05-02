@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "{{cookiecutter.directory_name}}"
+version = "0.1.0"
+description = ""
+authors = ["{{cookiecutter.author}}"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.dev-dependencies]
+bandit = {extras = ["toml"], version = "*"}
+black = "*"
+flake8-bugbear = "*"
+flake8-comprehensions = "*"
+ipython = "*"
+isort = "*"
+mypy = "*"
+pylint = "*"
+pytest = "*"
+Sphinx = "*"
+unify = "*"
+
+[tool.bandit.assert_used]
+skips = [
+    "./tests/*.py"
+]
+
+[tool.black]
+line-length = 120
+skip-string-normalization = true
+
+[tool.isort]
+profile = "black"
+line_length = 120
+
+[tool.pylint.messages_control]
+disable = [
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "missing-module-docstring",
+]
+
+[tool.pylint.format]
+max-line-length = 120
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
