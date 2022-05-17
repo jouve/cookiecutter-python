@@ -1,11 +1,24 @@
 [tool.poetry]
-name = "{{cookiecutter.directory_name}}"
+name = "{{ cookiecutter.directory_name }}"
 version = "0.1.0"
 description = ""
-authors = ["{{cookiecutter.author}}"]
+authors = ["{{ cookiecutter.author }}"]
+
+[tool.poetry.scripts]
+{{ cookiecutter.directory_name }} = '{{ cookiecutter.directory_name }}:main'
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^{{ cookiecutter.python_version }}"
+{% if cookiecutter.httpx -%}
+httpx = "*"
+{%- endif %}
+{% if cookiecutter.sqlalchemy -%}
+sqlalchemy = "*"
+{{ cookiecutter.sqlalchemy }} = "*"
+{%- endif %}
+{% if cookiecutter.yaml -%}
+PyYAML = "*"
+{%- endif %}
 
 [tool.poetry.dev-dependencies]
 bandit = {extras = ["toml"], version = "*"}
@@ -19,6 +32,9 @@ pylint = "*"
 pytest = "*"
 Sphinx = "*"
 unify = "*"
+{% if cookiecutter.yaml -%}
+types-PyYAML = "*"
+{%- endif %}
 
 [tool.bandit.assert_used]
 skips = [
@@ -30,8 +46,18 @@ line-length = 120
 skip-string-normalization = true
 
 [tool.isort]
-profile = "black"
+combine_as_imports = true
 line_length = 120
+profile = "black"
+
+[tool.pylint.basic]
+good-names = "_,df,ex,f,i,j,k,l,Run"
+
+[tool.pylint.format]
+max-line-length = 120
+
+[tool.pylint.master]
+recursive = "yes"
 
 [tool.pylint.messages_control]
 disable = [
@@ -39,9 +65,6 @@ disable = [
     "missing-function-docstring",
     "missing-module-docstring",
 ]
-
-[tool.pylint.format]
-max-line-length = 120
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

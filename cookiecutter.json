@@ -1,4 +1,8 @@
 {
     "directory_name": "project",
-    "author": "Cyril Jouve <jv.cyril@gmail.com>"
+    "python_version": "3.10",
+    "author": "Cyril Jouve <jv.cyril@gmail.com>",
+    "sqlalchemy": "",
+    "yaml": "",
+    "httpx": ""
 }

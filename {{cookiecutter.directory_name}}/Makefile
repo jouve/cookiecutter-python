@@ -18,7 +18,7 @@ flake8:
 	flake8 .
 
 pylint:
-	pylint project.py
+	pylint {{ cookiecutter.directory_name }}.py
 
 bandit:
 	bandit -c pyproject.toml .
