@@ -32,7 +32,7 @@ def logging_config(verbose: int):
 
 def main():
     parser = ArgumentParser()
-    parser.add_argument('-V', '--version', version='0.1.0')
+    parser.add_argument('-V', '--version', action='version', version='0.1.0')
     parser.add_argument('-v', '--verbose', action='count', default=0)
     {% if cookiecutter.httpx -%}
     parser.add_argument('base_url')
